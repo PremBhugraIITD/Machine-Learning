@@ -280,6 +280,9 @@ def plot_widget():
 
     n_line = (1,0)
 
+    fig = go.FigureWidget(data = final_data ).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], visible=False).update_xaxes(range = [-1.5,1.5], visible=False)
+    rhs_fig = go.FigureWidget(data = rhs_line.data + rhs_scatter.data).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], showgrid=False, visible=False).update_xaxes(range = [-1.5,1.5], showgrid=False, visible=False)
+
     def update(angle):
         ang = angle
         with fig.batch_update():
@@ -313,8 +316,6 @@ def plot_widget():
 
 
     freq_slider = interactive(update, angle=(0, 180, 1))        
-    fig = go.FigureWidget(data = final_data ).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], visible=False).update_xaxes(range = [-1.5,1.5], visible=False)
-    rhs_fig = go.FigureWidget(data = rhs_line.data + rhs_scatter.data).update_yaxes(scaleanchor = 'x', scaleratio= 1, range = [-1,1], showgrid=False, visible=False).update_xaxes(range = [-1.5,1.5], showgrid=False, visible=False)
 
     rhs_fig.update_layout(dict(width = 500, height = 400, plot_bgcolor = 'rgba(0,0,0,0)', title="PCA Projection"))
 
